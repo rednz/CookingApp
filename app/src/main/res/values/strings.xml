@@ -2,6 +2,8 @@
     <string name="app_name">Doctor Chef</string>
     <string name="button1">French</string>
     <string name="button2">Italian</string>
+    <string name="button3">English</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
