@@ -8,52 +8,72 @@
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_cookingchef_foreground"
             android:title="Home">
-            <menu>
-                <item></item>
-            </menu>
+
         </item>
     </group>
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav2"
-            android:icon="@drawable/ic_cookingchef_foreground"
+            android:id="@+id/nav_italian"
             android:title="Italian">
+
             <menu>
                 <item
-                    android:id="@+id/nav_sub"
+                    android:id="@+id/nav_sub_italian1"
                     android:icon="@drawable/ic_launcher_foreground"
-                    android:title="sub"></item>
+                    android:title="Pizza"></item>
                 <item
-                    android:id="@+id/nav_hom"
+                    android:id="@+id/nav_sub_italian2"
                     android:icon="@drawable/ic_launcher_foreground"
-                    android:title="yoo"></item>
+                    android:title="Pasta"></item>
                 <item
-                    android:id="@+id/nav_hom2"
+                    android:id="@+id/nav_sub_italian3"
                     android:icon="@drawable/ic_launcher_foreground"
-                    android:title="yoo"></item>
-
+                    android:title="Others"></item>
             </menu>
         </item>
     </group>
+
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_yolo"
-            android:title="sirfrrf">
-    <menu>
+            android:id="@+id/nav_french"
+            android:title="French">
+            <menu>
+                <item
+                    android:id="@+id/nav_sub_french1"
+                    android:icon="@drawable/ic_launcher_foreground"
+                    android:title="Soup"></item>
+                <item
+                    android:id="@+id/nav_sub_french2"
+                    android:icon="@drawable/ic_launcher_foreground"
+                    android:title="Crossant"></item>
+                <item
+                    android:id="@+id/nav_sub_french3"
+                    android:icon="@drawable/ic_launcher_foreground"
+                    android:title="Others"></item>
+            </menu>
+        </item>
+    <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_hm23e"
-            android:icon="@drawable/ic_launcher_foreground"
-            android:title="Hoe"></item>
-        <item
-            android:id="@+id/nav_hme"
-            android:icon="@drawable/ic_launcher_foreground"
-            android:title="Hoe">
+            android:id="@+id/nav_american"
+            android:title="American">
+            <menu>
+                <item
+                    android:id="@+id/nav_sub_american1"
+                    android:icon="@drawable/ic_launcher_foreground"
+                    android:title="Burgers"></item>
+                <item
+                    android:id="@+id/nav_sub_american2"
+                    android:icon="@drawable/ic_launcher_foreground"
+                    android:title="Crossant"></item>
+                <item
+                    android:id="@+id/nav_sub_american3"
+                    android:icon="@drawable/ic_launcher_foreground"
+                    android:title="Others"></item>
+            </menu>
+        </item>
 
-        </item>
-    </menu>
-        </item>
     </group>
 
-
+    </group>
 </menu>
