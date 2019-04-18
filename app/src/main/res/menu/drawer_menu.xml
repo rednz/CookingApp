@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_home"
-            android:title="Home">
+            android:title="@string/home">
 
         </item>
     </group>
@@ -15,20 +16,20 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_italian"
-            android:title="Italian">
+            android:title="@string/italian">
 
             <menu>
                 <item
                     android:id="@+id/nav_sub_italian1"
-                    android:icon="@drawable/ic_flag_of_italy"
+                    android:icon="@drawable/ic_iconitalian"
                     android:title="Pizza"></item>
                 <item
                     android:id="@+id/nav_sub_italian2"
-                    android:icon="@drawable/ic_launcher_foreground"
+                    android:icon="@drawable/ic_iconitalian"
                     android:title="Pasta"></item>
                 <item
                     android:id="@+id/nav_sub_italian3"
-                    android:icon="@mipmap/ic_launcher"
+                    android:icon="@drawable/ic_iconitalian"
                     android:title="Others"></item>
             </menu>
         </item>
@@ -37,43 +38,43 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_french"
-            android:title="French">
+            android:title="@string/french">
             <menu>
                 <item
                     android:id="@+id/nav_sub_french1"
-                    android:icon="@drawable/ic_flag_of_france"
+                    android:icon="@drawable/ic_iconfrench"
                     android:title="Soup"></item>
                 <item
                     android:id="@+id/nav_sub_french2"
-                    android:icon="@drawable/ic_launcher_foreground"
-                    android:title="Crossant"></item>
+                    android:icon="@drawable/ic_iconfrench"
+                    android:title="Crossiant"></item>
                 <item
                     android:id="@+id/nav_sub_french3"
-                    android:icon="@drawable/ic_launcher_foreground"
+                    android:icon="@drawable/ic_iconfrench"
                     android:title="Others"></item>
             </menu>
         </item>
+    </group>
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_american"
-            android:title="American">
+            android:title="@string/american">
             <menu>
                 <item
                     android:id="@+id/nav_sub_american1"
-                    android:icon="@drawable/ic_launcher_foreground"
+                    android:icon="@drawable/ic_iconamerican"
                     android:title="Burgers"></item>
                 <item
                     android:id="@+id/nav_sub_american2"
-                    android:icon="@drawable/ic_launcher_foreground"
+                    android:icon="@drawable/ic_iconamerican"
                     android:title="Hot Dogs"></item>
                 <item
                     android:id="@+id/nav_sub_american3"
-                    android:icon="@drawable/ic_launcher_foreground"
+                    android:icon="@drawable/ic_iconamerican"
                     android:title="Others"></item>
             </menu>
         </item>
 
     </group>
 
-    </group>
 </menu>

@@ -11,6 +11,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -51,13 +52,11 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 
             case R.id.nav_home:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
-
                 break;
 
             case R.id.nav_sub_italian1:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ItalianPizzaFragment()).commit();
-
-
+                //menuItem.setIcon(R.drawable.ic_flag_of_italy);
                 break;
 
             case R.id.nav_sub_italian2:
