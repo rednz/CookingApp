@@ -29,7 +29,7 @@
                     android:icon="@drawable/ic_launcher_foreground"
                     android:title="yoo"></item>
                 <item
-                    android:id="@+id/nav_hom"
+                    android:id="@+id/nav_hom2"
                     android:icon="@drawable/ic_launcher_foreground"
                     android:title="yoo"></item>
 
@@ -42,9 +42,9 @@
             android:title="sirfrrf">
     <menu>
         <item
-            android:id="@+id/nav_hme"
+            android:id="@+id/nav_hm23e"
             android:icon="@drawable/ic_launcher_foreground"
-            android:title="Hoe">
+            android:title="Hoe"></item>
         <item
             android:id="@+id/nav_hme"
             android:icon="@drawable/ic_launcher_foreground"
@@ -56,3 +56,4 @@
     </group>
 
 
+</menu>
