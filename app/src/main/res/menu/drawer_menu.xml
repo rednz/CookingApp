@@ -6,7 +6,7 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_cookingchef_foreground"
+            android:icon="@drawable/ic_home"
             android:title="Home">
 
         </item>
@@ -20,7 +20,7 @@
             <menu>
                 <item
                     android:id="@+id/nav_sub_italian1"
-                    android:icon="@drawable/ic_launcher_foreground"
+                    android:icon="@drawable/ic_flag_of_italy"
                     android:title="Pizza"></item>
                 <item
                     android:id="@+id/nav_sub_italian2"
@@ -41,7 +41,7 @@
             <menu>
                 <item
                     android:id="@+id/nav_sub_french1"
-                    android:icon="@drawable/ic_launcher_foreground"
+                    android:icon="@drawable/ic_flag_of_france"
                     android:title="Soup"></item>
                 <item
                     android:id="@+id/nav_sub_french2"

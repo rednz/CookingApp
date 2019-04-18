@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
             case R.id.nav_sub_italian1:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ItalianPizzaFragment()).commit();
 
+
                 break;
 
 
