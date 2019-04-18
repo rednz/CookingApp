@@ -60,7 +60,45 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 
                 break;
 
+            case R.id.nav_sub_italian2:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ItalianPastaFragment()).commit();
 
+                break;
+
+            case R.id.nav_sub_italian3:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ItalianOthersFragment()).commit();
+
+                break;
+
+            case R.id.nav_sub_french1:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FrenchSoupFragment()).commit();
+
+                break;
+
+            case R.id.nav_sub_french2:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FrenchCrossiantFragment()).commit();
+
+                break;
+
+            case R.id.nav_sub_french3:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FrenchOthersFragment()).commit();
+
+                break;
+
+            case R.id.nav_sub_american1:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AmericanBurgersFragment()).commit();
+
+                break;
+
+            case R.id.nav_sub_american2:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AmericanHotDogsFragment()).commit();
+
+                break;
+
+            case R.id.nav_sub_american3:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AmericanOthersFragment()).commit();
+
+                break;
         }
 
        drawer.closeDrawer(GravityCompat.START);
