@@ -28,7 +28,7 @@
                     android:title="Pasta"></item>
                 <item
                     android:id="@+id/nav_sub_italian3"
-                    android:icon="@drawable/ic_launcher_foreground"
+                    android:icon="@mipmap/ic_launcher"
                     android:title="Others"></item>
             </menu>
         </item>
