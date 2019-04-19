@@ -1,80 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
+    <group android:checkableBehavior="all">
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_home"
-            android:title="@string/home">
-
-        </item>
+            android:title="@string/home"></item>
     </group>
 
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_italian"
-            android:title="@string/italian">
-
-            <menu>
+    <item
+        android:id="@+id/nav_italian"
+        android:title="@string/italian">
+        <menu>
+            <group android:checkableBehavior="all">
                 <item
                     android:id="@+id/nav_sub_italian1"
                     android:icon="@drawable/ic_iconitalian"
-                    android:title="Pizza"></item>
+                    android:title="@string/pizza"></item>
                 <item
                     android:id="@+id/nav_sub_italian2"
                     android:icon="@drawable/ic_iconitalian"
-                    android:title="Pasta"></item>
+                    android:title="@string/pasta"></item>
                 <item
                     android:id="@+id/nav_sub_italian3"
                     android:icon="@drawable/ic_iconitalian"
-                    android:title="Others"></item>
-            </menu>
-        </item>
-    </group>
+                    android:title="@string/others"></item>
+            </group>
+        </menu>
+    </item>
 
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_french"
-            android:title="@string/french">
-            <menu>
+    <item
+        android:id="@+id/nav_french"
+        android:title="@string/french">
+        <menu>
+            <group android:checkableBehavior="all">
                 <item
                     android:id="@+id/nav_sub_french1"
                     android:icon="@drawable/ic_iconfrench"
-                    android:title="Soup"></item>
+                    android:title="@string/soup"></item>
                 <item
                     android:id="@+id/nav_sub_french2"
                     android:icon="@drawable/ic_iconfrench"
-                    android:title="Crossiant"></item>
+                    android:title="@string/crossiant"></item>
                 <item
                     android:id="@+id/nav_sub_french3"
                     android:icon="@drawable/ic_iconfrench"
-                    android:title="Others"></item>
-            </menu>
-        </item>
-    </group>
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_american"
-            android:title="@string/american">
-            <menu>
+                    android:title="@string/others"></item>
+            </group>
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/nav_american"
+        android:title="@string/american">
+        <menu>
+            <group android:checkableBehavior="all">
                 <item
                     android:id="@+id/nav_sub_american1"
                     android:icon="@drawable/ic_iconamerican"
-                    android:title="Burgers"></item>
+                    android:title="@string/burgers"></item>
                 <item
                     android:id="@+id/nav_sub_american2"
                     android:icon="@drawable/ic_iconamerican"
-                    android:title="Hot Dogs"></item>
+                    android:title="@string/hot_dogs"></item>
                 <item
                     android:id="@+id/nav_sub_american3"
                     android:icon="@drawable/ic_iconamerican"
-                    android:title="Others"></item>
-            </menu>
-        </item>
-
-    </group>
-
+                    android:title="@string/others"></item>
+            </group>
+        </menu>
+    </item>
 </menu>

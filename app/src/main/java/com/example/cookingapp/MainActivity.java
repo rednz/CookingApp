@@ -14,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -52,56 +53,58 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 
             case R.id.nav_home:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+                Toast.makeText(getBaseContext(), "Displaying Home Page" , Toast.LENGTH_SHORT ).show();
                 break;
 
             case R.id.nav_sub_italian1:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ItalianPizzaFragment()).commit();
-                //menuItem.setIcon(R.drawable.ic_flag_of_italy);
+                Toast.makeText(getBaseContext(), "Displaying Italian Pizza Recipes" , Toast.LENGTH_SHORT ).show();
                 break;
 
             case R.id.nav_sub_italian2:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ItalianPastaFragment()).commit();
-
+                Toast.makeText(getBaseContext(), "Displaying Italian Pasta Recipes" , Toast.LENGTH_SHORT ).show();
                 break;
 
             case R.id.nav_sub_italian3:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ItalianOthersFragment()).commit();
-
+                Toast.makeText(getBaseContext(), "Displaying Italian Others Recipes" , Toast.LENGTH_SHORT ).show();
                 break;
 
             case R.id.nav_sub_french1:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FrenchSoupFragment()).commit();
-
+                Toast.makeText(getBaseContext(), "Displaying French Soup Recipes" , Toast.LENGTH_SHORT ).show();
                 break;
 
             case R.id.nav_sub_french2:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FrenchCrossiantFragment()).commit();
-
+                Toast.makeText(getBaseContext(), "Displaying French Crossiant Recipes" , Toast.LENGTH_SHORT ).show();
                 break;
 
             case R.id.nav_sub_french3:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FrenchOthersFragment()).commit();
-
+                Toast.makeText(getBaseContext(), "Displaying French Others Recipes" , Toast.LENGTH_SHORT ).show();
                 break;
 
             case R.id.nav_sub_american1:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AmericanBurgersFragment()).commit();
-
+                Toast.makeText(getBaseContext(), "Displaying American Burgers Recipes" , Toast.LENGTH_SHORT ).show();
                 break;
+
 
             case R.id.nav_sub_american2:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AmericanHotDogsFragment()).commit();
-
+                Toast.makeText(getBaseContext(), "Displaying American Hot Dogs Recipes" , Toast.LENGTH_SHORT ).show();
                 break;
+
 
             case R.id.nav_sub_american3:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AmericanOthersFragment()).commit();
-
+                Toast.makeText(getBaseContext(), "Displaying American Others Recipes" , Toast.LENGTH_SHORT ).show();
                 break;
+
         }
-
-       drawer.closeDrawer(GravityCompat.START);
-
+        drawer.closeDrawer(GravityCompat.START);
         return true;//item is selected
     }
 
