@@ -44,7 +44,7 @@
                 <item
                     android:id="@+id/nav_sub_french2"
                     android:icon="@drawable/ic_iconfrench"
-                    android:title="@string/crossiant"></item>
+                    android:title="@string/croissant"></item>
                 <item
                     android:id="@+id/nav_sub_french3"
                     android:icon="@drawable/ic_iconfrench"

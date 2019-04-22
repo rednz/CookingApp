@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 
             case R.id.nav_sub_french2:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FrenchCrossiantFragment()).commit();
-                Toast.makeText(getBaseContext(), "Displaying French Crossiant Recipes" , Toast.LENGTH_SHORT ).show();
+                Toast.makeText(getBaseContext(), "Displaying French Croissant Recipes" , Toast.LENGTH_SHORT ).show();
                 break;
 
             case R.id.nav_sub_french3:

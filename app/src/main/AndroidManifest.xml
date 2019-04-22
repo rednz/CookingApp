@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_cookingchef_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".add_activity"></activity>
+        <activity
+            android:theme="@style/AddTheme"
+            android:name=".add_activity"/>
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait">
