@@ -20,5 +20,8 @@
     <string name="soup">Soup</string>
     <string name="pasta">Pasta</string>
     <string name="pizza">Pizza</string>
+    <string name="title_of_recipe">Title of Recipe</string>
+    <string name="write_recipe_details">Write Recipe Details</string>
+    <string name="submit">Submit</string>
 
 </resources>
