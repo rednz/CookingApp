@@ -7,104 +7,104 @@
     tools:context=".add_activity"
     android:fitsSystemWindows="true">
 
-        <ScrollView
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="15dp"
+        android:background="@color/background"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="15dp"
-            android:background="@color/background"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:paddingLeft="3dp"
+                android:text="Select Food Type"
+                android:textAllCaps="true"
+                android:textColor="@color/colorPrimary"
+                android:textSize="12sp"/>
 
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="3dp"
-                    android:text="Select Food Type"
-                    android:textAllCaps="true"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="12sp"/>
+            <Spinner
+                android:id="@+id/spinnertype"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/hiddentype"
+                android:layout_width="12dp"
+                android:layout_height="9dp"
+                android:layout_marginTop="4dp"
+                android:text="Large Text"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
 
-                <Spinner
-                    android:id="@+id/spinnertype"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:id="@+id/hiddentype"
-                    android:layout_width="12dp"
-                    android:layout_height="9dp"
-                    android:layout_marginTop="4dp"
-                    android:text="Large Text"
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="3dp"
+                android:text="@string/title_of_recipe"
+                android:textAllCaps="true"
+                android:textColor="@color/colorPrimary"
+                android:textSize="12sp" />
 
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="3dp"
-                    android:text="@string/title_of_recipe"
-                    android:textAllCaps="true"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="12sp" />
+            <EditText
+                android:id="@+id/title"
+                android:layout_width="fill_parent"
+                android:layout_height="38dp"
+                android:layout_marginBottom="20dp"
+                android:inputType="text"
+                android:singleLine="true"
+                android:textSize="14sp" />
 
-                <EditText
-                    android:id="@+id/title"
-                    android:layout_width="fill_parent"
-                    android:layout_height="38dp"
-                    android:layout_marginBottom="20dp"
-                    android:inputType="text"
-                    android:singleLine="true"
-                    android:textSize="14sp" />
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="32dp"
+                android:paddingLeft="3dp"
+                android:text="@string/write_recipe_details"
+                android:textAllCaps="true"
+                android:textColor="@color/colorPrimary"
+                android:textSize="12sp" />
 
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="32dp"
-                    android:paddingLeft="3dp"
-                    android:text="@string/write_recipe_details"
-                    android:textAllCaps="true"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="12sp" />
+            <EditText
+                android:id="@+id/recipedetails"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:height="250dp"
+                android:gravity="top"
+                android:inputType="textMultiLine"
+                android:textSize="14sp" />
 
-                <EditText
-                    android:id="@+id/recipedetails"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:height="250dp"
-                    android:gravity="top"
-                    android:inputType="textMultiLine"
-                    android:textSize="14sp" />
+            <Button
+                android:id="@+id/btn_choosedesign"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="@color/colorPrimary"
+                android:text="Select Image"
+                android:textColor="@color/background"
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
-                <Button
-                    android:id="@+id/btn_choosedesign"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="10dp"
-                    android:backgroundTint="@color/colorPrimary"
-                    android:text="Select Image"
-                    android:textColor="@color/background"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-                <Button
-                    android:id="@+id/btn_submit"
-                    android:layout_width="match_parent"
-                    android:layout_height="52dp"
-                    android:layout_gravity="center"
-                    android:background="@color/colorPrimary"
-                    android:paddingLeft="15dp"
-                    android:paddingTop="1dp"
-                    android:paddingRight="15dp"
-                    android:paddingBottom="1dp"
-                    android:text="@string/submit"
-                    android:textAllCaps="true"
-                    android:textColor="@android:color/white"
-                    android:textSize="17sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-        </ScrollView>
+            <Button
+                android:id="@+id/btn_submit"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_gravity="center"
+                android:background="@color/colorPrimary"
+                android:paddingLeft="15dp"
+                android:paddingTop="1dp"
+                android:paddingRight="15dp"
+                android:paddingBottom="1dp"
+                android:text="@string/submit"
+                android:textAllCaps="true"
+                android:textColor="@android:color/white"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </ScrollView>
 
 </android.support.constraint.ConstraintLayout>
