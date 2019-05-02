@@ -10,4 +10,17 @@
         android:text="Italian Others Fragment"
         android:textSize="30sp"
         android:layout_centerInParent="true"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/btn_add_italian_others"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:clickable="true"
+        android:layout_margin="20dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:backgroundTint="@color/colorA"
+        android:src="@drawable/ic_fab_add" />
 </RelativeLayout>
