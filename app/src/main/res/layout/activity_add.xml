@@ -23,27 +23,6 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="3dp"
-                android:text="Select Food Type"
-                android:textAllCaps="true"
-                android:textColor="@color/colorPrimary"
-                android:textSize="12sp"/>
-
-            <Spinner
-                android:id="@+id/spinnertype"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:id="@+id/hiddentype"
-                android:layout_width="12dp"
-                android:layout_height="9dp"
-                android:layout_marginTop="4dp"
-                android:text="Large Text"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="3dp"
                 android:text="@string/title_of_recipe"
                 android:textAllCaps="true"
                 android:textColor="@color/colorPrimary"
@@ -75,6 +54,7 @@
                 android:height="250dp"
                 android:gravity="top"
                 android:inputType="textMultiLine"
+                android:maxLength="900000000"
                 android:textSize="14sp" />
 
             <Button

@@ -1,5 +1,14 @@
 package com.example.cookingapp;
 
+
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -7,38 +16,22 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.Spinner;
-
-
-import android.widget.TextView;
-import android.widget.Toast;
-
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 
 public class add_activity extends AppCompatActivity {
 
     private int PICK_IMAGE_REQUEST = 1;
-    private static final String typearray = "type_name";
-    private static final String type  = "type_name";
-    private static final String JSON_ARRAY ="result";
-    private JSONArray result;
+
     private Button btn_choose ;
-    Spinner spinner;
-    private ArrayList<String> arrayList;
-    TextView food_type;
-    String type_name;
+
+    private Button btn_submiter;
+    private EditText name;
+    private EditText description;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,24 +39,15 @@ public class add_activity extends AppCompatActivity {
         setContentView(R.layout.activity_add);
 
         btn_choose = findViewById(R.id.btn_choosedesign);
+        name = findViewById(R.id.title);
+        description = findViewById(R.id.recipedetails);
 
-        this.spinner = (Spinner) findViewById(R.id.spinnertype);
-        food_type = (TextView) findViewById(R.id.hiddentype);
-      //  findViewById(R.id.hiddentype).setVisibility(View.GONE);
+        btn_submiter = findViewById(R.id.btn_submit);
 
-        arrayList = new ArrayList<String>();
-        getdata();
-
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        btn_submiter.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                //Setting the values to textviews for a selected item
-                food_type.setText(getlocation(position));
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                food_type.setText("");
+            public void onClick(View v) {
+                Submit();
             }
         });
 
@@ -77,59 +61,58 @@ public class add_activity extends AppCompatActivity {
 
     private void showFileChooser() {
         Intent intent = new Intent();
-        intent.setType("image/*");
+        intent.setType("image/*"); //get image
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
     }
 
-    private void getdata() {
-        StringRequest stringRequest = new StringRequest("http://10.68.127.144/CookingApp/gettype.php",
+    private void Submit() {
+        final String name_recipe = this.name.getText().toString().trim();
+        final String name_details = this.description.getText().toString().trim();
+
+
+        String URL_LOC = "http://10.68.117.144:81/CookingApp/insert_recipe.php";
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_LOC,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        JSONObject j = null;
                         try {
-                            j = new JSONObject(response);
-                            result = j.getJSONArray(JSON_ARRAY);
-                            details(result);
+                            JSONObject jsonObject = new JSONObject(response);
+                            String success = jsonObject.getString("success");
+
+                            if (success.equals("1")) {
+                                Toast.makeText(add_activity.this, "Recipe uploaded", Toast.LENGTH_SHORT).show();
+
+                                startActivity(new Intent(add_activity.this, MainActivity.class));
+
+                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
+                            Toast.makeText(add_activity.this, "Failed", Toast.LENGTH_SHORT).show();
+
                         }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+
+                        Toast.makeText(add_activity.this, "Please try again....", Toast.LENGTH_SHORT).show();
                     }
-                });
+                }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("food_type", getIntent().getStringExtra("food_type").trim());
+                params.put("name", name_recipe);
+                params.put("details", name_details );
+
+                return params;
+            }
+        };
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
 
-    private void details(JSONArray j) {
-        for (int i = 0; i < j.length(); i++) {
-            try {
-                JSONObject json = j.getJSONObject(i);
-                arrayList.add(json.getString(typearray));
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-        this.spinner.setAdapter(new ArrayAdapter<>(add_activity.this, android.R.layout.simple_spinner_dropdown_item, arrayList));
-    }
 
-    //Method to get location name which user selects
-    private String getlocation(int position) { // method is used to post name of marker to database accordingly
-        String loc = "";
-        try {
-            //Getting object of given index
-            JSONObject json = result.getJSONObject(position);
-            //Fetching location from that object
-            loc = json.getString(type);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        //Return location
-        return loc;
     }
-}
