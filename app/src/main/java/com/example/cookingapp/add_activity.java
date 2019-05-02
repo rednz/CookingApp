@@ -33,7 +33,7 @@ public class add_activity extends AppCompatActivity {
 
     private void showFileChooser() {
         Intent intent = new Intent();
-        intent.setType("image/*");
+        intent.setType("image/*"); //get image
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
     }
