@@ -50,7 +50,7 @@ public class AmericanHotDogsFragment extends Fragment {
 
         final String food_type = "8";
 
-        String URL_ADD = "http://10.68.117.144:81/CookingApp/get_type.php";
+        String URL_ADD = "http://10.68.113.231/CookingApp/get_type.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_ADD,
                 new Response.Listener<String>() {
                     @Override
