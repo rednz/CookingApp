@@ -6,6 +6,8 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,10 +21,13 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -30,12 +35,23 @@ public class AmericanOthersFragment extends Fragment {
 
     private FloatingActionButton btn_add_american_other;
 
+    //this is the JSON Data URL
+    //make sure you are using the correct ip else it will not work
+    private static final String URL_PRODUCTS = "http://10.68.125.158/CookingApp/MyApi/OthersAmerican.php";
+
+    //a list to store all the products
+    List<receipt> receiptList;
+
+    //the recyclerview
+    RecyclerView recyclerView;
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_american_others, container, false);
 
-        btn_add_american_other= view.findViewById(R.id.btn_add_american_others);
+        btn_add_american_other = view.findViewById(R.id.btn_add_american_others);
         btn_add_american_other.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,14 +59,80 @@ public class AmericanOthersFragment extends Fragment {
             }
         });
 
+        recyclerView = view.findViewById(R.id.recylcerView);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        //initializing the productlist
+        receiptList = new ArrayList<>();
+
+        //this method will fetch and parse json
+        //to display it in recyclerview
+        loadProducts();
+
         return view;
     }
+
+    private void loadProducts() {
+
+        /*
+         * Creating a String Request
+         * The request type is GET defined by first parameter
+         * The URL is defined in the second parameter
+         * Then we have a Response Listener and a Error Listener
+         * In response listener we will get the JSON response as a String
+         * */
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_PRODUCTS,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            //converting the string to json array object
+                            JSONArray array = new JSONArray(response);
+
+                            //traversing through all the object
+                            for (int i = 0; i < array.length(); i++) {
+
+                                //getting product object from json array
+                                JSONObject product = array.getJSONObject(i);
+
+                                //adding the product to product list
+                                receiptList.add(new receipt(
+                                        product.getInt("id"),
+                                        product.getString("title"),
+                                        product.getString("description"),
+                                        product.getString("image")
+                                ));
+                            }
+
+                            //creating adapter object and setting it to recyclerview
+                            ReceiptAdapter adapter = new ReceiptAdapter(getActivity(), receiptList);
+                            recyclerView.setAdapter(adapter);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                    }
+                }){
+
+        };
+
+        //adding our stringrequest to queue
+        Volley.newRequestQueue(getActivity()).add(stringRequest);
+
+
+    }
+
 
     private void add_am_others() {
 
         final String food_type = "9";
 
-        String URL_ADD = "http://10.68.113.231/CookingApp/get_type.php";
+        String URL_ADD = "http://10.68.125.158/CookingApp/get_type.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_ADD,
                 new Response.Listener<String>() {
                     @Override
