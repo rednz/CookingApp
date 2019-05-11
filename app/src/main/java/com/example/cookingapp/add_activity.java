@@ -124,7 +124,7 @@ public class add_activity extends AppCompatActivity {
         Intent intent = new Intent();
         intent.setType("image/*"); //get image
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+        startActivityForResult(Intent.createChooser(intent, "Select Image"), PICK_IMAGE_REQUEST);
     }
 
     @Override
@@ -153,7 +153,7 @@ public class add_activity extends AppCompatActivity {
         final String name_details = this.description.getText().toString().trim();
 
 
-        String URL_LOC = "http://192.168.1.175:81/CookingApp/insert_recipe.php";
+        String URL_LOC = "http://192.168.1.101/CookingApp/insert_recipe.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_LOC,
                 new Response.Listener<String>() {
                     @Override
@@ -163,7 +163,7 @@ public class add_activity extends AppCompatActivity {
                             String success = jsonObject.getString("success");
 
                             if (success.equals("1")) {
-                                Toast.makeText(add_activity.this, "Recipe uploaded", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(add_activity.this, "Recipe Uploaded", Toast.LENGTH_SHORT).show();
 
                                 Intent intent = new Intent(add_activity.this, MainActivity.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

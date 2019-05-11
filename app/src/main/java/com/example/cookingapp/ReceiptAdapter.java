@@ -1,7 +1,7 @@
 package com.example.cookingapp;
 
 import android.content.Context;
-import android.support.design.widget.FloatingActionButton;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,9 +14,7 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 
-
 public class ReceiptAdapter extends RecyclerView.Adapter<ReceiptAdapter.ProductViewHolder> {
-
 
 
     private Context mCtx;

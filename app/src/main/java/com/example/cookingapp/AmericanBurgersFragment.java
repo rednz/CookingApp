@@ -142,7 +142,7 @@ public class AmericanBurgersFragment extends Fragment {
                             String failed = jsonObject.getString("message");
 
                             if (success.equals("1")) {
-                                Toast.makeText(getActivity(), "Fill in Details to Add Recipe", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), "Fill in Details to Add Recipe For American Burgers", Toast.LENGTH_SHORT).show();
 
                                 Intent add = new Intent(getActivity(), add_activity.class);
                                 add.putExtra("food_type", food_type);
