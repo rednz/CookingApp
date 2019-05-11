@@ -153,7 +153,7 @@ public class add_activity extends AppCompatActivity {
         final String name_details = this.description.getText().toString().trim();
 
 
-        String URL_LOC = "http://192.168.1.101/CookingApp/insert_recipe.php";
+        String URL_LOC = "http://192.168.1.175:81/CookingApp/insert_recipe.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_LOC,
                 new Response.Listener<String>() {
                     @Override
@@ -165,7 +165,12 @@ public class add_activity extends AppCompatActivity {
                             if (success.equals("1")) {
                                 Toast.makeText(add_activity.this, "Recipe uploaded", Toast.LENGTH_SHORT).show();
 
-                                startActivity(new Intent(add_activity.this, MainActivity.class));
+                                Intent intent = new Intent(add_activity.this, MainActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(intent);
+                                finish();
+
 
                             }
                         } catch (JSONException e) {
