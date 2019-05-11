@@ -2,10 +2,6 @@
     <string name="app_name">Doctor Chef</string>
     <string name="navigation_drawer_open">Open Navigation Drawer</string>
     <string name="navigation_drawer_close">Close Navigation Drawer</string>
-    <string name="button1">French</string>
-    <string name="button2">Italian</string>
-    <string name="button3">English</string>
-
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -24,5 +20,14 @@
     <string name="write_recipe_details">Write Recipe Details:</string>
     <string name="submit">Submit</string>
     <string name="select_food_type">Select Food Type</string>
+    <string name="select_image">Select Image</string>
+
+    <string name="hometext">
+        Welcome to Doctor Chef!\n\n\n\n\n
+    </string>
+
+    <string name="hometext2">
+        Browse Several Different Recipes From Different Countries
+    </string>
 
 </resources>

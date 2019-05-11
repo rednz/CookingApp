@@ -153,7 +153,7 @@ public class add_activity extends AppCompatActivity {
         final String name_details = this.description.getText().toString().trim();
 
 
-        String URL_LOC = "http://10.68.125.158/CookingApp/insert_recipe.php";
+        String URL_LOC = "http://192.168.1.101/CookingApp/insert_recipe.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_LOC,
                 new Response.Listener<String>() {
                     @Override

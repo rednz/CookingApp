@@ -37,7 +37,7 @@ public class FrenchCrossiantFragment extends Fragment {
 
     //this is the JSON Data URL
     //make sure you are using the correct ip else it will not work
-    private static final String URL_PRODUCTS = "http://10.68.125.158/CookingApp/MyApi/Croissant.php";
+    private static final String URL_PRODUCTS = "http://192.168.1.101/CookingApp/MyApi/Croissant.php";
 
     //a list to store all the products
     List<receipt> receiptList;
@@ -132,7 +132,7 @@ public class FrenchCrossiantFragment extends Fragment {
 
         final String food_type = "5";
 
-        String URL_ADD = "http://10.68.125.158/CookingApp/get_type.php";
+        String URL_ADD = "http://192.168.1.101/CookingApp/get_type.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_ADD,
                 new Response.Listener<String>() {
                     @Override
