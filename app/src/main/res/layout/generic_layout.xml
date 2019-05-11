@@ -16,6 +16,7 @@
             tools:layout_editor_absoluteX="745dp"
             tools:layout_editor_absoluteY="-51dp" />
 
+        //ImageView
         <ImageView
             android:id="@+id/imageView"
             android:layout_marginTop="10dp"
