@@ -29,5 +29,7 @@
     <string name="hometext2">
         Browse Several Different Recipes From Different Countries
     </string>
+    <string name="recipelineseparator">---------------------------------------------------------</string>
+    <string name="imagegenericcontentdesc">Image</string>
 
 </resources>
