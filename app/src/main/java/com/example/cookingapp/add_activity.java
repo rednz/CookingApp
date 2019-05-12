@@ -72,7 +72,7 @@ public class add_activity extends AppCompatActivity {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
-                    validate(name);
+                    validatetitle(name);
                 }
             }
         });
@@ -80,7 +80,7 @@ public class add_activity extends AppCompatActivity {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
-                    validate(description);
+                    validatedescription(description);
                 }
             }
         });
@@ -88,8 +88,8 @@ public class add_activity extends AppCompatActivity {
         btn_submiter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean validtitle = validate(btn_submiter);
-                boolean validdesc = validate(btn_submiter);
+                boolean validtitle = validatetitle(btn_submiter);
+                boolean validdesc = validatedescription(btn_submiter);
                 if (validtitle && validdesc) {
                     Submit();
                 }
@@ -173,35 +173,36 @@ public class add_activity extends AppCompatActivity {
         }
     }
 
-    private boolean validate(View view) {
+    private boolean validatedescription(View view) {
         empty = " Field is required";
-        //30 or more characters
         if (description.getText().toString().trim().length() > 19) {
-            if (toast.size() > 0) {
-                description.setError(null);
+            description.setError(null);
 
-            }
             return true;
 
-
         } else if (TextUtils.isEmpty(description.getText())) {
-            description.setError("recipe description required");
+            description.setError("Recipe Description is required");
 
         } else {
             description.setError("Minimum of 20 characters");
         }
+
+        return false;
+    }
+
+    private boolean validatetitle(View view) {
+        empty = " Field is required";
+
         if (name.getText().toString().trim().length() > 2) {
-            if (toast.size() > 0) {
-                name.setError(null);
-            }
+            name.setError(null);
+
             return true;
 
-
         } else if (TextUtils.isEmpty(name.getText())) {
-            name.setError("recipe title required");
+            name.setError("Recipe Title is required");
 
         } else {
-            name.setError("Minimum of 3 characters long.");
+            name.setError("Minimum of 3 characters");
         }
         return false;
     }
