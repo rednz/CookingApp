@@ -11,6 +11,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -31,6 +32,7 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,7 +40,9 @@ import java.util.Map;
 public class add_activity extends AppCompatActivity {
 
 
-    private Button btn_choose ;
+    private Button btn_choose;
+    private final ArrayList<String> toast = new ArrayList<>();
+    private String empty;
 
     ImageView imageview;
 
@@ -47,7 +51,7 @@ public class add_activity extends AppCompatActivity {
     private EditText description;
 
     private static final int PERMISSION_REQUEST_CODE = 1;
-    private static final int PICK_IMAGE_REQUEST= 99;
+    private static final int PICK_IMAGE_REQUEST = 99;
     Bitmap bitmap;
 
 
@@ -64,10 +68,31 @@ public class add_activity extends AppCompatActivity {
 
         btn_submiter = findViewById(R.id.btn_submit);
 
+        name.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    validate(name);
+                }
+            }
+        });
+        description.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    validate(description);
+                }
+            }
+        });
+
         btn_submiter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Submit();
+                boolean validtitle = validate(btn_submiter);
+                boolean validdesc = validate(btn_submiter);
+                if (validtitle && validdesc) {
+                    Submit();
+                }
             }
         });
 
@@ -138,7 +163,7 @@ public class add_activity extends AppCompatActivity {
 
                 bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
 
-               // Toast.makeText(this, "" + bitmap, Toast.LENGTH_SHORT).show();// for testing
+                // Toast.makeText(this, "" + bitmap, Toast.LENGTH_SHORT).show();// for testing
 
                 //Setting the Bitmap to ImageView
                 imageview.setImageBitmap(bitmap); //to be displayed in app
@@ -148,12 +173,45 @@ public class add_activity extends AppCompatActivity {
         }
     }
 
+    private boolean validate(View view) {
+        empty = " Field is required";
+        //30 or more characters
+        if (description.getText().toString().trim().length() > 19) {
+            if (toast.size() > 0) {
+                description.setError(null);
+
+            }
+            return true;
+
+
+        } else if (TextUtils.isEmpty(description.getText())) {
+            description.setError("recipe description required");
+
+        } else {
+            description.setError("Minimum of 20 characters");
+        }
+        if (name.getText().toString().trim().length() > 2) {
+            if (toast.size() > 0) {
+                name.setError(null);
+            }
+            return true;
+
+
+        } else if (TextUtils.isEmpty(name.getText())) {
+            name.setError("recipe title required");
+
+        } else {
+            name.setError("Minimum of 3 characters long.");
+        }
+        return false;
+    }
+
     private void Submit() {
         final String name_recipe = this.name.getText().toString().trim();
         final String name_details = this.description.getText().toString().trim();
 
 
-        String URL_LOC = "http://192.168.1.101/CookingApp/insert_recipe.php";
+        String URL_LOC = "http://192.168.1.175:81/CookingApp/insert_recipe.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_LOC,
                 new Response.Listener<String>() {
                     @Override
@@ -183,7 +241,7 @@ public class add_activity extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
 
-                        Toast.makeText(add_activity.this, "Please try again....", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(add_activity.this, "Please make sure an image is chosen", Toast.LENGTH_SHORT).show();
                     }
                 }) {
             @Override
@@ -195,8 +253,8 @@ public class add_activity extends AppCompatActivity {
 
                 params.put("food_type", getIntent().getStringExtra("food_type").trim());
                 params.put("name", name_recipe);
-                params.put("details", name_details );
-                params.put("image",images);
+                params.put("details", name_details);
+                params.put("image", images);
 
 
                 return params;
@@ -206,15 +264,17 @@ public class add_activity extends AppCompatActivity {
         requestQueue.add(stringRequest);
     }
 
-    public String getStringImage(Bitmap bitmap){
-        ByteArrayOutputStream baos=new  ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG,100, baos);
-        byte [] b=baos.toByteArray();
-        String temp= Base64.encodeToString(b, Base64.DEFAULT);
+    public String getStringImage(Bitmap bitmap) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+        byte[] b = baos.toByteArray();
+        String temp = Base64.encodeToString(b, Base64.DEFAULT);
 
 
         return temp;
     }
 
 
-    }
+}
+
+
