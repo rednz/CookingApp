@@ -14,54 +14,55 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 
-public class ReceiptAdapter extends RecyclerView.Adapter<ReceiptAdapter.ProductViewHolder> {
+public class ReceiptAdapter extends RecyclerView.Adapter<ReceiptAdapter.RecipeView> {
 
 
-    private Context mCtx;
-    private List<receipt> productList;
+    private Context ctxt;
+    private List<receipt> ListofRecipes; //creating recipes in a list
 
-    public ReceiptAdapter(Context mCtx, List<receipt> productList) {
-        this.mCtx = mCtx;
-        this.productList = productList;
+    public ReceiptAdapter(Context ctxt, List<receipt> ListofRecipes) { //constructor
+        this.ctxt = ctxt;
+        this.ListofRecipes = ListofRecipes;
     }
 
     @Override
-    public ProductViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(mCtx);
-        View view = inflater.inflate(R.layout.generic_layout, null);
-        return new ProductViewHolder(view);
+    public RecipeView onCreateViewHolder(ViewGroup parent, int viewType) {
+        LayoutInflater inflater = LayoutInflater.from(ctxt);
+        View view = inflater.inflate(R.layout.generic_layout, null); //default layout of each recipe in different fragment
+        return new RecipeView(view);
     }
 
     @Override
-    public void onBindViewHolder(ProductViewHolder holder, int position) {
-        receipt receipt = productList.get(position);
+    public void onBindViewHolder(RecipeView holder, int position) {
+        receipt receipt = ListofRecipes.get(position); //creating object receipt of type receipt (class)
+        //.get is used to get recipe position
 
         //loading the image
-        Glide.with(mCtx)
-                .load(receipt.getImage())
-                .into(holder.imageView);
+        Glide.with(ctxt)
+                .load(receipt.getImage()) //from where to laod image (image location i.e getImage which is iniated in receipt
+                .into(holder.imageView); //load image to image view
 
-        holder.textViewTitle.setText(receipt.getTitle());
-        holder.textViewDescription.setText(receipt.getdescription());
+        holder.textViewTitle.setText(receipt.getTitle()); //setting title of recipe
+        holder.textViewDescription.setText(receipt.getdescription()); //setting recipe description
 
     }
 
     @Override
     public int getItemCount() {
-        return productList.size();
+        return ListofRecipes.size(); //counting size of list to determine how much to repeat
     }
 
-    class ProductViewHolder extends RecyclerView.ViewHolder {
+    class RecipeView extends RecyclerView.ViewHolder {
 
         TextView textViewTitle, textViewDescription;
         ImageView imageView;
 
-        public ProductViewHolder(View itemView) {
+        public RecipeView(View itemView) {
             super(itemView);
 
-            textViewTitle = itemView.findViewById(R.id.textViewTitle);
-            textViewDescription = itemView.findViewById(R.id.textViewDescription);
-            imageView = itemView.findViewById(R.id.imageView);
+            textViewTitle = itemView.findViewById(R.id.textViewTitle);//associating image according to its xml layout
+            textViewDescription = itemView.findViewById(R.id.textViewDescription);//associating text according to its xml layout
+            imageView = itemView.findViewById(R.id.imageView); //associating image according to its xml layout
 
         }
     }
