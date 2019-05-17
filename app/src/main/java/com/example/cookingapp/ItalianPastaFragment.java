@@ -37,7 +37,7 @@ public class ItalianPastaFragment extends Fragment {
 
     //this is the JSON Data URL
     //make sure you are using the correct ip else it will not work
-    private static final String URL_PRODUCTS = "http://192.168.1.101/CookingApp/MyApi/Pasta.php";
+    private static final String URL_PRODUCTS = "http://10.68.101.108:81/CookingApp/MyApi/Pasta.php";
 
     //a list to store all the products
     List<receipt> receiptList;
@@ -51,7 +51,7 @@ public class ItalianPastaFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_italian_pasta, container, false);
 
-        btn_add_pastas= view.findViewById(R.id.btn_add_pasta);
+        btn_add_pastas = view.findViewById(R.id.btn_add_pasta);
         btn_add_pastas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -116,8 +116,9 @@ public class ItalianPastaFragment extends Fragment {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getActivity(), "No internet connection", Toast.LENGTH_SHORT).show();
                     }
-                }){
+                }) {
 
         };
 
@@ -131,7 +132,7 @@ public class ItalianPastaFragment extends Fragment {
 
         final String food_type = "2";
 
-        String URL_ADD = "http://192.168.1.101/CookingApp/get_type.php";
+        String URL_ADD = "http://10.68.101.108:81/CookingApp/get_type.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_ADD,
                 new Response.Listener<String>() {
                     @Override
@@ -161,8 +162,7 @@ public class ItalianPastaFragment extends Fragment {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-
-                        Toast.makeText(getActivity(), "Please Try Again later........" + error.toString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "No internet connection", Toast.LENGTH_SHORT).show();
                     }
                 }) {
             @Override

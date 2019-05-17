@@ -1,11 +1,17 @@
 package com.example.cookingapp;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -38,7 +44,7 @@ public class ItalianPizzaFragment extends Fragment {
 
     //this is the JSON Data URL
     //make sure you are using the correct ip else it will not work
-    private static final String URL_PRODUCTS = "http://192.168.1.101/CookingApp/MyApi/Pizza.php";
+    private static final String URL_PRODUCTS = "http://10.68.101.108:81/CookingApp/MyApi/Pizza.php";
 
     //a list to store all the products
     List<receipt> receiptList;
@@ -51,6 +57,7 @@ public class ItalianPizzaFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_italian_pizza, container, false);
+
 
         btn_add_pizzas = view.findViewById(R.id.btn_add_pizza);
         btn_add_pizzas.setOnClickListener(new View.OnClickListener() {
@@ -117,10 +124,11 @@ public class ItalianPizzaFragment extends Fragment {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getActivity(), "No internet connection", Toast.LENGTH_SHORT).show();
                     }
-                    }){
+                }) {
 
-                };
+        };
 
         //adding our stringrequest to queue
         Volley.newRequestQueue(getActivity()).add(stringRequest);
@@ -133,7 +141,7 @@ public class ItalianPizzaFragment extends Fragment {
 
         final String food_type = "1";
 
-        String URL_ADD = "http://192.168.1.101/CookingApp/get_type.php";
+        String URL_ADD = "http://10.68.101.108:81/CookingApp/get_type.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_ADD,
                 new Response.Listener<String>() {
                     @Override
@@ -163,8 +171,7 @@ public class ItalianPizzaFragment extends Fragment {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-
-                        Toast.makeText(getActivity(), "Please Try Again later........" + error.toString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "No internet connection", Toast.LENGTH_SHORT).show();
                     }
                 }) {
             @Override
@@ -180,4 +187,6 @@ public class ItalianPizzaFragment extends Fragment {
 
         requestQueue.add(stringRequest);
     }
+
+
 }

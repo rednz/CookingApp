@@ -75,7 +75,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_alignParentTop="true"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center" />
 
             <Button
                 android:id="@+id/btn_submit"

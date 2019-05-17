@@ -1,14 +1,20 @@
 package com.example.cookingapp;
 
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
+import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -58,6 +64,7 @@ public class add_activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (!InternetConnectivity(add_activity.this)) buildDialog(add_activity.this).show();
         setContentView(R.layout.activity_add);
 
         btn_choose = findViewById(R.id.btn_choosedesign);
@@ -192,7 +199,6 @@ public class add_activity extends AppCompatActivity {
 
     private boolean validatetitle(View view) {
         empty = " Field is required";
-
         if (name.getText().toString().trim().length() > 2) {
             name.setError(null);
 
@@ -212,7 +218,7 @@ public class add_activity extends AppCompatActivity {
         final String name_details = this.description.getText().toString().trim();
 
 
-        String URL_LOC = "http://192.168.1.175:81/CookingApp/insert_recipe.php";
+        String URL_LOC = "http://10.68.101.108:81/CookingApp/insert_recipe.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_LOC,
                 new Response.Listener<String>() {
                     @Override
@@ -273,6 +279,47 @@ public class add_activity extends AppCompatActivity {
 
 
         return temp;
+    }
+
+
+    private boolean InternetConnectivity(Context context) {
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        return (activeNetwork != null && activeNetwork.isConnectedOrConnecting());
+    }
+
+    private AlertDialog.Builder buildDialog(Context c) {
+
+        AlertDialog.Builder message = new AlertDialog.Builder(c);
+        message.setCancelable(false);
+        message.setTitle("No Internet Connection");
+        message.setMessage("Please ensure your device has internet connection");
+
+        message.setPositiveButton("Proceed", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent myIntent = new Intent(Settings.ACTION_WIRELESS_SETTINGS);
+                startActivity(myIntent);
+            }
+
+        });
+        message.setNegativeButton("Exit", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+
+        return message;
+    }
+
+    protected void onResume() {
+        super.onResume();
+        if (!InternetConnectivity(add_activity.this)) buildDialog(add_activity.this).show();
+
+
     }
 
 
