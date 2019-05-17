@@ -39,7 +39,7 @@ public class ItalianPastaFragment extends Fragment {
     //make sure you are using the correct ip else it will not work
     private static final String URL_PRODUCTS = "http://10.68.101.108:81/CookingApp/MyApi/Pasta.php";
 
-    //a list to store all the products
+    //a list to store all the recipes
     List<receipt> receiptList;
 
     //the recyclerview
