@@ -12,7 +12,7 @@ public class receipt {
         this.description = description;
         this.image = image;
     }
-
+//getters to retrieve from the database
     public int getId() {
         return id;
     }

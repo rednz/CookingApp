@@ -47,8 +47,6 @@ public class add_activity extends AppCompatActivity {
 
 
     private Button btn_choose;
-    private final ArrayList<String> toast = new ArrayList<>();
-    private String empty;
 
     ImageView imageview;
 
@@ -64,10 +62,10 @@ public class add_activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (!InternetConnectivity(add_activity.this)) buildDialog(add_activity.this).show();
-        setContentView(R.layout.activity_add);
+        if (!InternetConnectivity(add_activity.this)) buildDialog(add_activity.this).show(); //check for internet connectivity if no internet display internet permission
+        setContentView(R.layout.activity_add); //setting layout
 
-        btn_choose = findViewById(R.id.btn_choosedesign);
+        btn_choose = findViewById(R.id.btn_choosedesign); //assigning it according to layout
         name = findViewById(R.id.title);
         description = findViewById(R.id.recipedetails);
 
@@ -79,7 +77,7 @@ public class add_activity extends AppCompatActivity {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
-                    validatetitle(name);
+                    validatetitle(name); //validate title on the go
                 }
             }
         });
@@ -87,7 +85,7 @@ public class add_activity extends AppCompatActivity {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
-                    validatedescription(description);
+                    validatedescription(description); //validate description of vthe recipe on the go
                 }
             }
         });
@@ -95,10 +93,10 @@ public class add_activity extends AppCompatActivity {
         btn_submiter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean validtitle = validatetitle(btn_submiter);
-                boolean validdesc = validatedescription(btn_submiter);
+                boolean validtitle = validatetitle(btn_submiter); // on click check if title is valid
+                boolean validdesc = validatedescription(btn_submiter); //on click check if description is valid
                 if (validtitle && validdesc) {
-                    Submit();
+                    Submit(); // call this method if title and description of recipe are valid
                 }
             }
         });
@@ -106,46 +104,50 @@ public class add_activity extends AppCompatActivity {
         btn_choose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showFileChooser();
+                showFileChooser(); // on click show call filechooser method
             }
         });
 
         if (Build.VERSION.SDK_INT >= 23) {
-            if (checkPermission()) {
-                // Code for above or equal 23 API Oriented Device
-                // Your Permission granted already .Do next code
+            if (checkPermission()) { //checks for permission if permission is already granted
+                // Permission granted already or not? // if it return true do nothing if false request permission
             } else {
-                requestPermission();
+                requestPermission(); // if permission is not already granted display permission
             }
         }
 
     }
 
     private void requestPermission() {
+        //request permission to access the storage for images
         if (ActivityCompat.shouldShowRequestPermissionRationale(add_activity.this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
             Toast.makeText(add_activity.this, " Please allow this permission in Application Settings.", Toast.LENGTH_LONG).show();
         } else {
             ActivityCompat.requestPermissions(add_activity.this, new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
+
+            // PERMISSIONS_REQUEST_CODE is an
+            // app-defined int constant. The callback method gets the
+            // result of the request.
         }
     }
 
     private boolean checkPermission() {
         int result = ContextCompat.checkSelfPermission(add_activity.this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
         if (result == PackageManager.PERMISSION_GRANTED) {
-            return true;
+            return true;// if permission is given return true
         } else {
-            return false;
+            return false; //no permission given return false
         }
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         switch (requestCode) {
-            case PERMISSION_REQUEST_CODE:
+            case PERMISSION_REQUEST_CODE: //request code is passed which means user allowed permission
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    Toast.makeText(add_activity.this, "Permission Granted Successfully! ", Toast.LENGTH_LONG).show();
+                    Toast.makeText(add_activity.this, "Permission Granted Successfully! ", Toast.LENGTH_LONG).show(); //Permission is succesfully given
                 } else {
-                    Toast.makeText(add_activity.this, "Permission Denied", Toast.LENGTH_LONG).show();
+                    Toast.makeText(add_activity.this, "Permission Denied", Toast.LENGTH_LONG).show(); //Permission failed
                 }
                 break;
         }
@@ -154,17 +156,20 @@ public class add_activity extends AppCompatActivity {
 
     private void showFileChooser() {
         Intent intent = new Intent();
-        intent.setType("image/*"); //get image
+        intent.setType("image/*"); //to show an image
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Select Image"), PICK_IMAGE_REQUEST);
+        startActivityForResult(Intent.createChooser(intent, "Select Image"), PICK_IMAGE_REQUEST);//hence pass image request
+        // open intent which displays images stored in device so user chooses an image
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
+        // once the intent where the user has to choose an image is opened
+        //if reuquestcode == to image request which is passed from showfileChooser method
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri filePath = data.getData();
+            //if user selected an image therefore data not null
             try {
                 //Getting the Bitmap from Gallery
 
@@ -173,7 +178,7 @@ public class add_activity extends AppCompatActivity {
                 // Toast.makeText(this, "" + bitmap, Toast.LENGTH_SHORT).show();// for testing
 
                 //Setting the Bitmap to ImageView
-                imageview.setImageBitmap(bitmap); //to be displayed in app
+                imageview.setImageBitmap(bitmap); //to be displayed in add_activity once the user has chosen an image.
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -181,66 +186,64 @@ public class add_activity extends AppCompatActivity {
     }
 
     private boolean validatedescription(View view) {
-        empty = " Field is required";
-        if (description.getText().toString().trim().length() > 19) {
-            description.setError(null);
+        if (description.getText().toString().trim().length() > 19) { // description must be greater than or equal to 20 if it is greater
+            description.setError(null);                                 // do not display any errors
 
             return true;
 
         } else if (TextUtils.isEmpty(description.getText())) {
-            description.setError("Recipe Description is required");
+            description.setError("Recipe Description is required"); //when description field is empty
 
         } else {
-            description.setError("Minimum of 20 characters");
+            description.setError("Minimum of 20 characters"); //when characters do not add up to 20 characters in textview
         }
 
         return false;
     }
 
     private boolean validatetitle(View view) {
-        empty = " Field is required";
-        if (name.getText().toString().trim().length() > 2) {
-            name.setError(null);
+        if (name.getText().toString().trim().length() > 2) { // title must be greater or equal to 3
+            name.setError(null); //if it is greater or equal to 3 do not display error
 
             return true;
 
         } else if (TextUtils.isEmpty(name.getText())) {
-            name.setError("Recipe Title is required");
+            name.setError("Recipe Title is required");// if empty display this error
 
         } else {
-            name.setError("Minimum of 3 characters");
+            name.setError("Minimum of 3 characters");//when characters do not add up to 3 characters in textview display this error
         }
         return false;
     }
 
-    private void Submit() {
-        final String name_recipe = this.name.getText().toString().trim();
-        final String name_details = this.description.getText().toString().trim();
+    private void Submit() { //adding recipre to database according to type
+        final String name_recipe = this.name.getText().toString().trim(); //final name of recipe to insert in db
+        final String name_details = this.description.getText().toString().trim(); // final description to insert in db
 
 
-        String URL_LOC = "http://10.68.101.108:81/CookingApp/insert_recipe.php";
+        String URL_LOC = "http://192.168.1.175:81/CookingApp/insert_recipe.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_LOC,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-                            String success = jsonObject.getString("success");
+                            String success = jsonObject.getString("success"); //if query succeeded
 
                             if (success.equals("1")) {
                                 Toast.makeText(add_activity.this, "Recipe Uploaded", Toast.LENGTH_SHORT).show();
-
+                                //once recipe is uploaded user is taken back to main activity
                                 Intent intent = new Intent(add_activity.this, MainActivity.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                startActivity(intent);
-                                finish();
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);//user wont be able to return to this activity once on back is pressed once in main activity
+                                startActivity(intent);// start intent from add activity go to main activity
+                                finish(); // add_activity is destroyed
 
 
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Toast.makeText(add_activity.this, "Failed", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(add_activity.this, "Failed", Toast.LENGTH_SHORT).show(); //failuer
                         }
                     }
                 },
@@ -248,7 +251,7 @@ public class add_activity extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
 
-                        Toast.makeText(add_activity.this, "Please make sure an image is chosen", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(add_activity.this, "Please make sure an image is chosen", Toast.LENGTH_SHORT).show();// connection error and no image is selected
                     }
                 }) {
             @Override
@@ -256,10 +259,11 @@ public class add_activity extends AppCompatActivity {
 
                 Map<String, String> params = new HashMap<>();
 
-                String images = getStringImage(bitmap);
+                String images = getStringImage(bitmap); //converting image by calling method
 
-                params.put("food_type", getIntent().getStringExtra("food_type").trim());
-                params.put("name", name_recipe);
+                params.put("food_type", getIntent().getStringExtra("food_type").trim()); //getting food_type which was passed from putextra
+                                                                                                // intent default method from previous activity
+                params.put("name", name_recipe); //passing data to php script to run successfull
                 params.put("details", name_details);
                 params.put("image", images);
 
@@ -271,35 +275,35 @@ public class add_activity extends AppCompatActivity {
         requestQueue.add(stringRequest);
     }
 
-    public String getStringImage(Bitmap bitmap) {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+    public String getStringImage(Bitmap bitmap) { //converting image to bitmap which is saved on folder as png
+        ByteArrayOutputStream baos = new ByteArrayOutputStream(); //data written in byte array which is needed since we use bitmap
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
-        byte[] b = baos.toByteArray();
-        String temp = Base64.encodeToString(b, Base64.DEFAULT);
+        byte[] b = baos.toByteArray(); //putting stream data in byteArray
+        String temp = Base64.encodeToString(b, Base64.DEFAULT); //encoding representation of binary data to string
 
 
         return temp;
     }
 
 
-    private boolean InternetConnectivity(Context context) {
+    private boolean InternetConnectivity(Context context) { //check internet conenction
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-        return (activeNetwork != null && activeNetwork.isConnectedOrConnecting());
+        return (activeNetwork != null && activeNetwork.isConnectedOrConnecting()); //if there is network and is connected or still connecting to a network it does not display error
     }
 
     private AlertDialog.Builder buildDialog(Context c) {
 
         AlertDialog.Builder message = new AlertDialog.Builder(c);
-        message.setCancelable(false);
-        message.setTitle("No Internet Connection");
-        message.setMessage("Please ensure your device has internet connection");
+        message.setCancelable(false); //cannot cancel message
+        message.setTitle("No Internet Connection");//title of message
+        message.setMessage("Please ensure your device has internet connection"); //error message
 
         message.setPositiveButton("Proceed", new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Intent myIntent = new Intent(Settings.ACTION_WIRELESS_SETTINGS);
+                Intent myIntent = new Intent(Settings.ACTION_WIRELESS_SETTINGS);//proceed is clicked hence itnernet settings are opened
                 startActivity(myIntent);
             }
 
@@ -308,7 +312,7 @@ public class add_activity extends AppCompatActivity {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                finish();
+                finish(); //exit pressed activity destroyed
             }
         });
 
@@ -317,7 +321,7 @@ public class add_activity extends AppCompatActivity {
 
     protected void onResume() {
         super.onResume();
-        if (!InternetConnectivity(add_activity.this)) buildDialog(add_activity.this).show();
+        if (!InternetConnectivity(add_activity.this)) buildDialog(add_activity.this).show();//check for internet
 
 
     }

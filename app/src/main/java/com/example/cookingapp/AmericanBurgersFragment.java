@@ -36,13 +36,13 @@ public class AmericanBurgersFragment extends Fragment {
     private FloatingActionButton btn_add_burger;
 
     //this is the JSON Data URL
-    //make sure you are using the correct ip else it will not work
-    private static final String URL_PRODUCTS = "http://10.68.101.108:81/CookingApp/MyApi/Burgers.php";
+    private static final String URL_PRODUCTS = "http://10.68.101.108:81/CookingApp/MyApi/Burgers.php";//make sure you are using the correct ip else it will not work
 
-    //a list to store all the products
+
+    //a list to store all the recipes
     List<receipt> receiptList;
 
-    //the recyclerview
+    //Creating the recycler view
     RecyclerView recyclerView;
 
 
@@ -55,25 +55,25 @@ public class AmericanBurgersFragment extends Fragment {
         btn_add_burger.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                add_burger();
+                add_burger(); //call add method
             }
         });
 
-        recyclerView = view.findViewById(R.id.recylcerView);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView = view.findViewById(R.id.recylcerView); //setting reclerview based on it's id which is specified in layout of fragment
+        recyclerView.setHasFixedSize(true); //recyclerView's size is not affected by the adapter contents.
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity())); //set layout according to fragment
 
-        //initializing the productlist
+        //initializing the array list
         receiptList = new ArrayList<>();
 
         //this method will fetch and parse json
         //to display it in recyclerview
-        loadProducts();
+        getrecipes();
 
         return view;
     }
 
-    private void loadProducts() {
+    private void getrecipes() { //display recipes from database
 
         /*
          * Creating a String Request
@@ -96,7 +96,7 @@ public class AmericanBurgersFragment extends Fragment {
                                 //getting product object from json array
                                 JSONObject product = array.getJSONObject(i);
 
-                                //adding the product to product list
+                                //adding the recipe and it's details to array list
                                 receiptList.add(new receipt(
                                         product.getInt("id"),
                                         product.getString("title"),
@@ -107,7 +107,8 @@ public class AmericanBurgersFragment extends Fragment {
 
                             //creating adapter object and setting it to recyclerview
                             ReceiptAdapter adapter = new ReceiptAdapter(getActivity(), receiptList);
-                            recyclerView.setAdapter(adapter);
+                            recyclerView.setAdapter(adapter); //A list adapter is an object that adapts a collection objects for display in a ListView.
+                            // adapter is used to display recipes from the database according to their type in a list view
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -116,7 +117,7 @@ public class AmericanBurgersFragment extends Fragment {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getActivity(), "No internet connection", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "No internet connection", Toast.LENGTH_SHORT).show();// When Cannot connect
                     }
                 }) {
 
@@ -128,9 +129,10 @@ public class AmericanBurgersFragment extends Fragment {
 
     }
 
-    private void add_burger() {
+    private void add_burger() {// launching add_activity on click
+        //passing the food type  to know which type of food user is adding.
 
-        final String food_type = "7";
+        final String food_type = "7"; // type_id of food
 
         String URL_ADD = "http://10.68.101.108:81/CookingApp/get_type.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_ADD,
@@ -139,15 +141,15 @@ public class AmericanBurgersFragment extends Fragment {
                     public void onResponse(String response) {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-                            String success = jsonObject.getString("success");
-                            String failed = jsonObject.getString("message");
+                            String success = jsonObject.getString("success"); //query succeed
+                            String failed = jsonObject.getString("message");// query failed
 
                             if (success.equals("1")) {
                                 Toast.makeText(getActivity(), "Fill in Details to Add Recipe For American Burgers", Toast.LENGTH_SHORT).show();
 
-                                Intent add = new Intent(getActivity(), add_activity.class);
-                                add.putExtra("food_type", food_type);
-                                startActivity(add);
+                                Intent add = new Intent(getActivity(), add_activity.class); //moving to the add activity
+                                add.putExtra("food_type", food_type); //passing the type_id of the food
+                                startActivity(add); //starting add_activity
                             } else {
                                 Toast.makeText(getActivity(), failed, Toast.LENGTH_LONG).show();
 
@@ -163,13 +165,13 @@ public class AmericanBurgersFragment extends Fragment {
                     @Override
                     public void onErrorResponse(VolleyError error) {
 
-                        Toast.makeText(getActivity(), "No internet connection", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "No internet connection", Toast.LENGTH_SHORT).show(); //Connection error
                     }
                 }) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-                params.put("food_type", food_type);
+                params.put("food_type", food_type); //is used to pass food_type value to php script
 
 
                 return params;
@@ -177,6 +179,6 @@ public class AmericanBurgersFragment extends Fragment {
         };
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
 
-        requestQueue.add(stringRequest);
+        requestQueue.add(stringRequest); //adding request to queue
     }
 }
