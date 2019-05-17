@@ -31,5 +31,6 @@
     </string>
     <string name="recipelineseparator">---------------------------------------------------------</string>
     <string name="imagegenericcontentdesc">Image</string>
+    <string name="logo">Logo</string>
 
 </resources>
