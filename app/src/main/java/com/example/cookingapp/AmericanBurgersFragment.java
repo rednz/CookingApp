@@ -36,7 +36,7 @@ public class AmericanBurgersFragment extends Fragment {
     private FloatingActionButton btn_add_burger;
 
     //this is the JSON Data URL
-    private static final String URL_PRODUCTS = "http://10.68.101.108:81/CookingApp/MyApi/Burgers.php";//make sure you are using the correct ip else it will not work
+    private static final String URL_PRODUCTS = "http://192.168.1.68:81/CookingApp/MyApi/Burgers.php";//make sure you are using the correct ip else it will not work
 
 
     //a list to store all the recipes
@@ -134,7 +134,7 @@ public class AmericanBurgersFragment extends Fragment {
 
         final String food_type = "7"; // type_id of food
 
-        String URL_ADD = "http://10.68.101.108:81/CookingApp/get_type.php";
+        String URL_ADD = "http://192.168.1.68:81/CookingApp/get_type.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_ADD,
                 new Response.Listener<String>() {
                     @Override

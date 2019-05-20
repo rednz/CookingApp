@@ -35,7 +35,7 @@ public class FrenchCrossiantFragment extends Fragment {
 
     private FloatingActionButton btn_add_crossiants;
 
-    private static final String URL_PRODUCTS = "http://10.68.101.108:81/CookingApp/MyApi/Croissant.php";
+    private static final String URL_PRODUCTS = "http://192.168.1.68:81/CookingApp/MyApi/Croissant.php";
     List<receipt> receiptList;
     RecyclerView recyclerView;
 
@@ -107,7 +107,7 @@ public class FrenchCrossiantFragment extends Fragment {
 
         final String food_type = "5";
 
-        String URL_ADD = "http://10.68.101.108:81/CookingApp/get_type.php";
+        String URL_ADD = "http://192.168.1.68:81/CookingApp/get_type.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_ADD,
                 new Response.Listener<String>() {
                     @Override

@@ -34,7 +34,7 @@ import java.util.Map;
 public class AmericanOthersFragment extends Fragment {
 
     private FloatingActionButton btn_add_american_other;
-    private static final String URL_PRODUCTS = "http://10.68.101.108:81/CookingApp/MyApi/OthersAmerican.php";
+    private static final String URL_PRODUCTS = "http://192.168.1.68:81/CookingApp/MyApi/OthersAmerican.php";
 
     List<receipt> receiptList;
     RecyclerView recyclerView;
@@ -108,7 +108,7 @@ public class AmericanOthersFragment extends Fragment {
 
         final String food_type = "9";
 
-        String URL_ADD = "http://10.68.101.108:81/CookingApp/get_type.php";
+        String URL_ADD = "http://192.168.1.68:81/CookingApp/get_type.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_ADD,
                 new Response.Listener<String>() {
                     @Override

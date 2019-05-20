@@ -221,7 +221,7 @@ public class add_activity extends AppCompatActivity {
         final String name_details = this.description.getText().toString().trim(); // final description to insert in db
 
 
-        String URL_LOC = "http://10.68.101.108:81/CookingApp/insert_recipe.php";
+        String URL_LOC = "http://192.168.1.68:81/CookingApp/insert_recipe.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_LOC,
                 new Response.Listener<String>() {
                     @Override

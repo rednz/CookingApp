@@ -35,7 +35,7 @@ public class ItalianPastaFragment extends Fragment {
 
     private FloatingActionButton btn_add_pastas;
 
-    private static final String URL_PRODUCTS = "http://10.68.101.108:81/CookingApp/MyApi/Pasta.php";
+    private static final String URL_PRODUCTS = "http://192.168.1.68:81/CookingApp/MyApi/Pasta.php";
 
     List<receipt> receiptList;
 
@@ -106,7 +106,7 @@ public class ItalianPastaFragment extends Fragment {
 
         final String food_type = "2";
 
-        String URL_ADD = "http://10.68.101.108:81/CookingApp/get_type.php";
+        String URL_ADD = "http://192.168.1.68:81/CookingApp/get_type.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_ADD,
                 new Response.Listener<String>() {
                     @Override
