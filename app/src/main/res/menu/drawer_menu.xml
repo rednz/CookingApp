@@ -8,8 +8,16 @@
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_home"
-            android:title="@string/home"></item>
+            android:title="@string/home"/>
     </group>
+
+
+<group android:checkableBehavior="all">
+    <item
+        android:id="@+id/nav_aboutus"
+        android:icon="@drawable/ic_iconaboutus"
+        android:title="@string/about_us_menu"/>
+</group>
 
     <item
         android:id="@+id/nav_italian"
@@ -19,15 +27,15 @@
                 <item
                     android:id="@+id/nav_sub_italian1"
                     android:icon="@drawable/ic_iconitalian"
-                    android:title="@string/pizza"></item>
+                    android:title="@string/pizza"/>
                 <item
                     android:id="@+id/nav_sub_italian2"
                     android:icon="@drawable/ic_iconitalian"
-                    android:title="@string/pasta"></item>
+                    android:title="@string/pasta"/>
                 <item
                     android:id="@+id/nav_sub_italian3"
                     android:icon="@drawable/ic_iconitalian"
-                    android:title="@string/others"></item>
+                    android:title="@string/others"/>
             </group>
         </menu>
     </item>
@@ -40,15 +48,15 @@
                 <item
                     android:id="@+id/nav_sub_french1"
                     android:icon="@drawable/ic_iconfrench"
-                    android:title="@string/soup"></item>
+                    android:title="@string/soup"/>
                 <item
                     android:id="@+id/nav_sub_french2"
                     android:icon="@drawable/ic_iconfrench"
-                    android:title="@string/croissant"></item>
+                    android:title="@string/croissant"/>
                 <item
                     android:id="@+id/nav_sub_french3"
                     android:icon="@drawable/ic_iconfrench"
-                    android:title="@string/others"></item>
+                    android:title="@string/others"/>
             </group>
         </menu>
     </item>
@@ -61,15 +69,15 @@
                 <item
                     android:id="@+id/nav_sub_american1"
                     android:icon="@drawable/ic_iconamerican"
-                    android:title="@string/burgers"></item>
+                    android:title="@string/burgers"/>
                 <item
                     android:id="@+id/nav_sub_american2"
                     android:icon="@drawable/ic_iconamerican"
-                    android:title="@string/hot_dogs"></item>
+                    android:title="@string/hot_dogs"/>
                 <item
                     android:id="@+id/nav_sub_american3"
                     android:icon="@drawable/ic_iconamerican"
-                    android:title="@string/others"></item>
+                    android:title="@string/others"/>
             </group>
         </menu>
     </item>

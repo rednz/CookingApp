@@ -3,16 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="fill_parent"
     android:fitsSystemWindows="true"
     tools:context=".add_activity">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="15dp"
+        android:layout_height="fill_parent"
+        android:fillViewport="true"
         android:background="@color/background"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -22,58 +24,60 @@
                 android:id="@+id/title_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignTop="@id/title_text"
+                android:paddingTop="8dp"
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"
                 android:text="@string/title_of_recipe"
                 android:textAllCaps="true"
                 android:textColor="@color/colorPrimary"
                 android:textSize="14sp"
-                android:textStyle="bold"
-                android:layout_alignTop="@id/title_text" />
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
-                android:minWidth="200dp"
-                android:maxWidth="300dp"
                 android:layout_height="38dp"
+                android:layout_below="@id/title_text"
                 android:layout_marginBottom="20dp"
                 android:inputType="text"
+                android:maxWidth="300dp"
+                android:minWidth="200dp"
                 android:singleLine="true"
                 android:textSize="14sp"
-                android:textStyle="bold"
-                android:layout_below="@id/title_text" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/recipedetailstext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/title"
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"
                 android:text="@string/write_recipe_details"
                 android:textAllCaps="true"
                 android:textColor="@color/colorPrimary"
                 android:textSize="14sp"
-                android:textStyle="bold"
-                android:layout_below="@+id/title"/>
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/recipedetails"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/recipedetailstext"
                 android:layout_marginBottom="20dp"
                 android:height="100dp"
                 android:inputType="textMultiLine"
                 android:maxWidth="470dp"
                 android:maxLength="900000000"
                 android:minWidth="300dp"
-                android:textSize="14sp"
-                android:layout_below="@+id/recipedetailstext"/>
+                android:textSize="14sp" />
 
             <Button
                 android:id="@+id/btn_choosedesign"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingTop="8dp"
                 android:layout_marginStart="325dp"
                 android:layout_marginBottom="10dp"
                 android:layout_toEndOf="@+id/title_text"
@@ -99,14 +103,14 @@
                 android:id="@+id/btn_submit"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_below="@id/recipedetails"
                 android:background="@color/colorPrimary"
                 android:paddingTop="1dp"
                 android:text="@string/submit"
                 android:textAllCaps="true"
                 android:textColor="@android:color/white"
                 android:textSize="17sp"
-                android:textStyle="bold"
-                android:layout_below="@id/recipedetails"/>
+                android:textStyle="bold" />
         </RelativeLayout>
     </ScrollView>
 

@@ -154,6 +154,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             }
 
+            case R.id.nav_aboutus: //if about us is pressed open home fragment
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AboutUSFragment()).commit();
+                Toast.makeText(getBaseContext(), "Displaying About Us Page", Toast.LENGTH_SHORT).show();
+                break;
+
         }
         drawer.closeDrawer(GravityCompat.START); //since its on left side of screen
         return true;//item is selected

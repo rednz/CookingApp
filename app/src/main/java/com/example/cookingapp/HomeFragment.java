@@ -35,7 +35,7 @@ import java.util.Map;
 
 public class HomeFragment extends Fragment {
 
-    private static final String URL_PRODUCTS = "http://192.168.1.68:81/CookingApp/MyApi/All.php";
+    private static final String URL_PRODUCTS = "http://192.168.1.102/CookingApp/MyApi/All.php";
 
     List<receipt> receiptList;
 
