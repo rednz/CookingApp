@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_sub_italian2: { //if pasta is pressed open pasta fragment
                 ItalianPastaFragment fragment = new ItalianPastaFragment();
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container ,fragment);
+                transaction.replace(R.id.fragment_container ,fragment); //replace layout with fragment
                 transaction.addToBackStack(null);
                 transaction.commit();
                 Toast.makeText(getBaseContext(), "Displaying Italian Pasta Recipes", Toast.LENGTH_SHORT).show();
@@ -154,11 +154,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             }
 
-            case R.id.nav_aboutus: //if about us is pressed open home fragment
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AboutUSFragment()).commit();
-                Toast.makeText(getBaseContext(), "Displaying About Us Page", Toast.LENGTH_SHORT).show();
-                break;
-
+            case R.id.nav_aboutus: {//if about us is pressed open about us fragment
+                AboutUSFragment fragment = new AboutUSFragment();
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, fragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
         }
         drawer.closeDrawer(GravityCompat.START); //since its on left side of screen
         return true;//item is selected
